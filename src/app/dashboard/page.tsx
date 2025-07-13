@@ -39,10 +39,8 @@ import PatientForm from '../components/PatientForm';
 import AddPatient from './components/PatientForm';
 
 const headers = [
-  { key: 'id', header: 'ID' },
   { key: 'name', header: 'Name' },
   { key: 'age', header: 'Age' },
-  { key: 'gender', header: 'Gender' },
   { key: 'diagnosis', header: 'Diagnosis' },
   { key: 'actions', header: 'Actions' },
 ];
