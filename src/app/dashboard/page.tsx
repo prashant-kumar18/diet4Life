@@ -117,7 +117,7 @@ const Dashboard = () => {
               <TableBatchActions {...getBatchActionProps()}>
                 <TableBatchAction tabIndex={0} onClick={() => handleDelete(
                   selectedRows
-                    .map((row) => patients.find((p) => p.id === row.id)?.id)
+                    .map((row) => patients.find((p: { id: string; }) => p.id === row.id)?.id)
                     .filter((id): id is string => !!id))} 
                     renderIcon={RowDelete}>
                   Delete
@@ -127,7 +127,7 @@ const Dashboard = () => {
                   onClick={() =>
                     handleDownload(
                       selectedRows
-                        .map((row) => patients.find((p) => p.id === row.id))
+                        .map((row) => patients.find((p: { id: string; }) => p.id === row.id))
                         .filter(Boolean) as Patient[]
                     )
                   }

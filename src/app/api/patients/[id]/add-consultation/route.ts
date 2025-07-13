@@ -5,23 +5,20 @@ import { NextRequest } from 'next/server';
 
 export async function POST(
   req: NextRequest,
-  context: { params: { id: Promise<{ id: string }> } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     await dbConnect();
 
     const consultation = await req.json();
-
     const { id } =await context.params;
 
-    console.log('add-consult server log--> ', consultation);
-    console.log('add-consult server log patientId--> ', id);
+    console.log('add-consult server log -->', consultation);
+    console.log('add-consult server log patientId -->', id);
 
     const updatedPatient = await Patient.findOneAndUpdate(
-      { id: id },
-      {
-        $push: { consultations: consultation },
-      },
+      { id },
+      { $push: { consultations: consultation } },
       { new: true }
     );
 
