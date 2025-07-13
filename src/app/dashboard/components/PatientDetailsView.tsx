@@ -1,6 +1,12 @@
 import { Patient } from "@/app/types/types";
 import { handleDownload } from "@/app/utils/utils";
-import { Accordion, AccordionItem, Modal, Stack } from "@carbon/react";
+import {
+  Accordion,
+  AccordionItem,
+  Modal,
+  Stack,
+  Button,
+} from "@carbon/react";
 
 export function PatientDetailsView({
   isModalOpen,
@@ -10,7 +16,7 @@ export function PatientDetailsView({
 }: {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setLoadingRowId:React.Dispatch<React.SetStateAction<string | null>>;
+  setLoadingRowId: React.Dispatch<React.SetStateAction<string | null>>;
   selectedPatient: Patient | null;
 }) {
   return (
@@ -18,9 +24,12 @@ export function PatientDetailsView({
       open={isModalOpen}
       onRequestClose={() => setIsModalOpen(false)}
       modalHeading="Patient Details"
-      primaryButtonText="Download"
-      secondaryButtonText="Close"
-      onRequestSubmit={() => selectedPatient && handleDownload([selectedPatient])}
+      primaryButtonText="Download CSV"
+      secondaryButtonText="Download PDF"
+      onRequestSubmit={() =>
+        selectedPatient && handleDownload([selectedPatient], "csv")
+      }
+      onSecondarySubmit={()=>selectedPatient && handleDownload([selectedPatient], "pdf")}
       size="lg"
     >
       {selectedPatient && (
@@ -46,43 +55,100 @@ export function PatientDetailsView({
               >
                 <Accordion>
                   <AccordionItem title="Symptoms & Diagnosis">
-                    <p><strong>Symptoms:</strong> {consultation.symptoms}</p>
-                    <p><strong>Duration:</strong> {consultation.duration}</p>
-                    <p><strong>Severity:</strong> {consultation.severity}</p>
-                    <p><strong>Triggers:</strong> {consultation.triggers}</p>
-                    <p><strong>Relieving Factors:</strong> {consultation.relievingFactors}</p>
-                    <p><strong>Diagnosis:</strong> {consultation.diagnosis}</p>
+                    <p>
+                      <strong>Symptoms:</strong> {consultation.symptoms}
+                    </p>
+                    <p>
+                      <strong>Duration:</strong> {consultation.duration}
+                    </p>
+                    <p>
+                      <strong>Severity:</strong> {consultation.severity}
+                    </p>
+                    <p>
+                      <strong>Triggers:</strong> {consultation.triggers}
+                    </p>
+                    <p>
+                      <strong>Relieving Factors:</strong>{" "}
+                      {consultation.relievingFactors}
+                    </p>
+                    <p>
+                      <strong>Diagnosis:</strong> {consultation.diagnosis}
+                    </p>
                   </AccordionItem>
 
                   <AccordionItem title="Medical History">
-                    <p><strong>Chronic Conditions:</strong> {consultation.chronicConditions.join(', ')}</p>
-                    <p><strong>Past Surgeries:</strong> {consultation.surgeries}</p>
-                    <p><strong>Family History:</strong> {consultation.familyHistory}</p>
-                    <p><strong>Medications:</strong> {consultation.takingMedication} - {consultation.medicationsList}</p>
-                    <p><strong>Supplements:</strong> {consultation.supplements}</p>
-                    <p><strong>Allergies:</strong> {consultation.allergies}</p>
+                    <p>
+                      <strong>Chronic Conditions:</strong>{" "}
+                      {consultation.chronicConditions.join(", ")}
+                    </p>
+                    <p>
+                      <strong>Past Surgeries:</strong> {consultation.surgeries}
+                    </p>
+                    <p>
+                      <strong>Family History:</strong>{" "}
+                      {consultation.familyHistory}
+                    </p>
+                    <p>
+                      <strong>Medications:</strong>{" "}
+                      {consultation.takingMedication} -{" "}
+                      {consultation.medicationsList}
+                    </p>
+                    <p>
+                      <strong>Supplements:</strong> {consultation.supplements}
+                    </p>
+                    <p>
+                      <strong>Allergies:</strong> {consultation.allergies}
+                    </p>
                   </AccordionItem>
 
                   <AccordionItem title="Lifestyle">
-                    <p><strong>Sleep:</strong> {consultation.sleep}</p>
-                    <p><strong>Appetite:</strong> {consultation.appetite}</p>
-                    <p><strong>Water Intake:</strong> {consultation.waterIntake}</p>
-                    <p><strong>Bowel:</strong> {consultation.bowel}</p>
-                    <p><strong>Physical Activity:</strong> {consultation.activity}</p>
+                    <p>
+                      <strong>Sleep:</strong> {consultation.sleep}
+                    </p>
+                    <p>
+                      <strong>Appetite:</strong> {consultation.appetite}
+                    </p>
+                    <p>
+                      <strong>Water Intake:</strong> {consultation.waterIntake}
+                    </p>
+                    <p>
+                      <strong>Bowel:</strong> {consultation.bowel}
+                    </p>
+                    <p>
+                      <strong>Physical Activity:</strong>{" "}
+                      {consultation.activity}
+                    </p>
                   </AccordionItem>
 
                   <AccordionItem title="Vitals">
-                    <p><strong>Height:</strong> {consultation.height} cm</p>
-                    <p><strong>Weight:</strong> {consultation.weight} kg</p>
-                    <p><strong>Blood Pressure:</strong> {consultation.bp}</p>
-                    <p><strong>Pulse:</strong> {consultation.pulse}</p>
-                    <p><strong>Temperature:</strong> {consultation.temperature}</p>
-                    <p><strong>SpO2:</strong> {consultation.spo2}</p>
+                    <p>
+                      <strong>Height:</strong> {consultation.height} cm
+                    </p>
+                    <p>
+                      <strong>Weight:</strong> {consultation.weight} kg
+                    </p>
+                    <p>
+                      <strong>Blood Pressure:</strong> {consultation.bp}
+                    </p>
+                    <p>
+                      <strong>Pulse:</strong> {consultation.pulse}
+                    </p>
+                    <p>
+                      <strong>Temperature:</strong> {consultation.temperature}
+                    </p>
+                    <p>
+                      <strong>SpO2:</strong> {consultation.spo2}
+                    </p>
                   </AccordionItem>
 
                   <AccordionItem title="Investigations">
-                    <p><strong>Tests:</strong> {consultation.investigations.join(', ')}</p>
-                    <p><strong>Other Tests:</strong> {consultation.otherTests}</p>
+                    <p>
+                      <strong>Tests:</strong>{" "}
+                      {consultation.investigations.join(", ")}
+                    </p>
+                    <p>
+                      <strong>Other Tests:</strong> {consultation.otherTests}
+                    </p>
                   </AccordionItem>
                 </Accordion>
               </AccordionItem>
