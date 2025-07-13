@@ -29,34 +29,34 @@ export const HeaderComponent = () => {
     const router = useRouter();
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const Model = <Modal
-        open={isOpen}
-        modalHeading={
-            <div>
-                <strong className="modalHeader">
-                    <span>Diet4Life</span> <b>Patient Manager</b>
-                </strong>
-            </div>
-        }
-        passiveModal
-        onRequestClose={() => setIsOpen(false)}
-    >
-        <p className="licenseText">
+    // const Model = <Modal
+    //     open={isOpen}
+    //     modalHeading={
+    //         <div>
+    //             <strong className="modalHeader">
+    //                 <span>Diet4Life</span> <b>Patient Manager</b>
+    //             </strong>
+    //         </div>
+    //     }
+    //     passiveModal
+    //     onRequestClose={() => setIsOpen(false)}
+    // >
+    //     <p className="licenseText">
 
-        </p>
-    </Modal>
+    //     </p>
+    // </Modal>
     return (
         <Theme theme='g100'>
             <HeaderContainer
                 render={({ isSideNavExpanded, onClickSideNavExpand }) => (
                     <div>
                         <Header aria-label="Diet4Life">
-                            <HeaderMenuButton
+                            {/* <HeaderMenuButton
                                 aria-label={isSideNavExpanded ? 'Close menu' : 'Open menu'}
                                 onClick={onClickSideNavExpand}
                                 isActive={isSideNavExpanded}
                                 aria-expanded={isSideNavExpanded}
-                            />
+                            /> */}
                             <HeaderName href="#" prefix="Diet4Life" id="product">
                                 <Tag
                                     size="sm"
@@ -72,7 +72,7 @@ export const HeaderComponent = () => {
                                     > {tab.name}
                                     </HeaderMenuItem>)}
                             </HeaderNavigation>
-                            <HeaderGlobalBar >
+                            {/* <HeaderGlobalBar >
                                 <HeaderGlobalAction
                                     onClick={() => setIsOpen(!isOpen)}
                                     tooltipAlignment="center"
@@ -82,9 +82,9 @@ export const HeaderComponent = () => {
                                 >
                                     <Information size={20} />
                                 </HeaderGlobalAction>
-                            </HeaderGlobalBar>
+                            </HeaderGlobalBar> */}
 
-                            <SideNav suppressHydrationWarning
+                            {/* <SideNav suppressHydrationWarning
                                 aria-label="Side navigation"
                                 expanded={isSideNavExpanded}
                                 isPersistent={false}
@@ -100,9 +100,9 @@ export const HeaderComponent = () => {
                                         </HeaderMenuItem>)}
                                     </HeaderSideNavItems>
                                 </SideNavItems>
-                            </SideNav>
+                            </SideNav> */}
                         </Header>
-                        {isOpen && Model}
+                        {/* {isOpen && Model} */}
                     </div>
                 )}
             /></Theme>
