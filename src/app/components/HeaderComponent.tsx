@@ -23,8 +23,6 @@ import { useState } from 'react';
 
 const tabs = [
     { name: 'Dashboard', href: '/dashboard' },
-    { name: 'Add Patient', href: '/add' },
-
 ]
 
 export const HeaderComponent = () => {

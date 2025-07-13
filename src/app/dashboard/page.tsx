@@ -35,6 +35,8 @@ import { handleDownload } from '../utils/utils';
 import { useData } from '../components/ContextProvider';
 import { Patient } from '../types/types';
 import { Dialog } from '@carbon/react/lib/components/Dialog';
+import PatientForm from '../components/PatientForm';
+import AddPatient from './components/PatientForm';
 
 const headers = [
   { key: 'id', header: 'ID' },
@@ -49,6 +51,7 @@ const Dashboard = () => {
   const router = useRouter();
 
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [isAddPatinetModalOpen, setIsAddPatinetModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isAddConsultModalOpen, setIsAddConsultModalOpen] = useState(false);
@@ -61,6 +64,10 @@ const Dashboard = () => {
 
   if (patientsData.isLoading) return <Loading withOverlay />;
 
+  const handleAddPatinent = () => {
+    setIsAddPatinetModalOpen(true);
+
+  };
   const handleView = (patient: Patient) => {
     setSelectedPatient(patient);
     setIsViewModalOpen(true);
@@ -147,7 +154,7 @@ const Dashboard = () => {
                     }
                   }}
                 />
-                <Button renderIcon={Add} onClick={() => router.push('/add')}>
+                <Button renderIcon={Add} onClick={handleAddPatinent}>
                   Add
                 </Button>
               </TableToolbarContent>
@@ -201,6 +208,10 @@ const Dashboard = () => {
         setIsModalOpen={setIsDeleteModalOpen}
         setLoadingRowId={setLoadingRowId}
         selectedPatientIds={selectedPatientIds}
+      />      
+      <AddPatient
+        isModalOpen={isAddPatinetModalOpen}
+        setIsModalOpen={setIsAddPatinetModalOpen}
       />
     </>
   );
