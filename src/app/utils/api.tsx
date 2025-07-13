@@ -19,7 +19,7 @@ export const useScheduleGetPatients = (): UseQueryResult<any, Error> => {
     queryKey: ['patients'],
     queryFn: getPatients,
     staleTime: 10000,         // don't refetch if data is < 10s old
-    refetchInterval: 100000,   // re-poll every 10s
+    refetchInterval: 10000,   // re-poll every 10s
   });
 };
 
@@ -109,7 +109,6 @@ export const useDeletePatient = () => {
   return useMutation({
     mutationFn: deletePatients,
     onSuccess: async () => {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
       await queryClient.invalidateQueries({ queryKey: ['patients'] });
     },
   });

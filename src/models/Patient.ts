@@ -33,7 +33,7 @@ const ConsultationSchema = new mongoose.Schema({
 }, { _id: false });
 
 const PatientSchema = new mongoose.Schema({
-  patientId: { type: String, required: true, unique: true },
+  id: { type: String, required: true, unique: true },
   name: { type: String, required: true },
   age: Number,
   gender: String,
