@@ -46,24 +46,25 @@ export const HeaderComponent = () => {
     //     </p>
     // </Modal>
     return (
-        <Theme theme='g100'>
+        <Theme theme='g10' color='red'>
             <HeaderContainer
                 render={({ isSideNavExpanded, onClickSideNavExpand }) => (
                     <div>
-                        <Header aria-label="Diet4Life">
+                        <Header aria-label="Phyto-Veda">
                             {/* <HeaderMenuButton
                                 aria-label={isSideNavExpanded ? 'Close menu' : 'Open menu'}
                                 onClick={onClickSideNavExpand}
                                 isActive={isSideNavExpanded}
                                 aria-expanded={isSideNavExpanded}
                             /> */}
-                            <HeaderName href="#" prefix="Diet4Life" id="product">
+                            <HeaderName href="#" prefix="PHYTO-VEDA" style={{color:'orange',fontWeight:'bold'}} id="product">
                                 <Tag
                                     size="sm"
-                                    type="outline" className='tag-left-margin'
+                                    type="outline"
+                                    style={{fontWeight:'bold', marginLeft:'10px'}}
                                 >Patient Manager</Tag>
                             </HeaderName>
-                            <HeaderNavigation aria-label="Diet4Life">
+                            {/* <HeaderNavigation aria-label="Diet4Life">
                                 {tabs.map(tab =>
                                     <HeaderMenuItem
                                         isActive={pathname === tab.href}
@@ -71,7 +72,7 @@ export const HeaderComponent = () => {
                                         onClick={() => router.push(tab.href)}
                                     > {tab.name}
                                     </HeaderMenuItem>)}
-                            </HeaderNavigation>
+                            </HeaderNavigation> */}
                             {/* <HeaderGlobalBar >
                                 <HeaderGlobalAction
                                     onClick={() => setIsOpen(!isOpen)}
